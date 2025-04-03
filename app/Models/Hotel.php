@@ -9,6 +9,13 @@ class Hotel extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'location',
+        'description',
+        'image',
+    ];
+
     public function rooms() {
         return $this->hasMany(Room::class);
     }
