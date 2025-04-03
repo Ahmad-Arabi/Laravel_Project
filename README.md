@@ -49,7 +49,7 @@ Welcome to **JoHotels**, your one-stop solution for booking the best hotels and 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-repo/booking.git
+   git clone https://github.com/Ahmad-Arabi/Laravel_Project/tree/main
    cd booking
 
 2. **composer install**
