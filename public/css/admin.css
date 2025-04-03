@@ -87,16 +87,16 @@ body {
   height: 254px;
   border-radius: 30px;
   background: #e0e0e0;
-  box-shadow: 15px 15px 30px #bebebe,
-             -15px -15px 30px #ffffff;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+  transition:  0.2s ease-in-out;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: -20px 20px 60px #bebebe,
-  20px -20px 60px #ffffff;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background: lightgrey;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+  transition:  0.2s ease-in-out;
 
 }
 
