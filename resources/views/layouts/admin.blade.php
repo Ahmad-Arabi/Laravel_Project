@@ -21,7 +21,7 @@
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="#" class="nav-link {{ request()->routeIs('home') ? 'active' : 'text-white' }}" aria-current="page">
+      <a href="{{ route('admin.homepage.index')}} " class="nav-link {{ request()->routeIs('admin.homepage.index') ? 'active' : 'text-white' }}" aria-current="page">
         <i class="bi bi-house-door"></i>
         Home
       </a>
@@ -57,7 +57,7 @@
       </a>
     </li>
     <li>
-      <a href="" class="nav-link {{ request()->routeIs('coupons.index') ? 'active' : 'text-white' }}">
+      <a href="{{route('admin.reviews.index')}}" class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active' : 'text-white' }}">
         <i class="bi bi-chat-right-heart"></i>
         Reviews
       </a>
@@ -70,15 +70,20 @@
       <strong>{{Auth::user()->name}}</strong>
     </a>
     <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-      <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
-      <li><hr class="dropdown-divider"></li>
+      <li>
+        <x-dropdown-link :href="route('profile.edit') " class="dropdown-item">
+             <i class="bi bi-person-circle"></i>
+              {{ __('Profile') }}
+          </x-dropdown-link>
+      </li>
       <li>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
-
           <x-dropdown-link :href="route('logout') " class="dropdown-item"
+          style="color: rgb(231, 62, 62);"
                   onclick="event.preventDefault();
                               this.closest('form').submit();">
+              <i class="bi bi-box-arrow-left"></i>
               {{ __('Log Out') }}
           </x-dropdown-link>
         </form>

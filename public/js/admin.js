@@ -252,7 +252,8 @@ document.addEventListener('click', function (e) {
         // Get the `data-id` and `data-type` attributes from the clicked button
         const entityId = e.target.getAttribute('data-id');
         const entityType = e.target.getAttribute('data-type'); // Example: "bookings", "users"
-
+        console.log(entityId, entityType);
+        
         // Build the form's action URL dynamically
         const deleteForm = document.getElementById('deleteForm'); // The ID for the shared delete form
         deleteForm.setAttribute('action', `/admin/${entityType}/${entityId}`);
@@ -262,3 +263,36 @@ document.addEventListener('click', function (e) {
         deleteModal.show();
     }
 });
+
+document.addEventListener('click', function (e) {
+    const button = e.target.closest('.approve-action, .reject-action'); // Detect if "Approve" or "Reject" button is clicked
+    if (button) {
+        e.preventDefault();
+
+        // Get the necessary data attributes
+        const actionType = button.dataset.info; // 'approve' or 'reject'
+        const reviewId = button.dataset.id;
+
+        // Update the modal message and submit button
+        const modalMessage = document.getElementById('modalMessage');
+        const modalSubmitButton = document.getElementById('modalSubmitButton');
+        const buttonText = document.getElementById('buttonText'); // Optional: if you want to change the button text
+        if (actionType === 'approve') {
+            modalMessage.textContent = "Are you sure you want to approve this review?";
+            buttonText.textContent = "Approve";
+            modalSubmitButton.classList.remove('btn-danger');
+            modalSubmitButton.classList.add('btn-primary');
+        } else if (actionType === 'reject') {
+            modalMessage.textContent = "Are you sure you want to reject this review?";
+            buttonText.textContent = "Reject";
+            modalSubmitButton.classList.remove('btn-primary');
+            modalSubmitButton.classList.add('btn-danger');
+        }
+
+        // Update the form's action dynamically
+        const form = document.getElementById('actionForm');
+        form.setAttribute('action', `/admin/reviews/${reviewId}/${actionType}`);
+        document.getElementById('modalActionType').value = actionType; // Set hidden input value
+    }
+});
+

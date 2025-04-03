@@ -7,7 +7,9 @@ use App\Http\Controllers\AdminUsersController;
 use App\Http\Controllers\AdminBookingsController;
 use App\Http\Controllers\AdminCouponsController;
 use App\Http\Controllers\AdminHotelsController;
+use App\Http\Controllers\AdminReviewsController;
 use App\Http\Controllers\AdminRoomsController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +29,9 @@ require __DIR__.'/auth.php';
 
 Route::prefix('admin')->name('admin.')->middleware('checkAdmin')->group(function () {
         
+        //users CRUD
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('homepage.index');
+
         //users CRUD
         Route::get('/users', [AdminUsersController::class, 'index'])->name('users.index');
         Route::delete('/users/{id}', [AdminUsersController::class, 'destroy'])->name('users.destroy');
@@ -68,5 +73,10 @@ Route::prefix('admin')->name('admin.')->middleware('checkAdmin')->group(function
         Route::post('/coupons', [AdminCouponsController::class, 'store'])->name('coupons.store');
         Route::get('/coupons/{id}/edit', [AdminCouponsController::class, 'edit'])->name('coupons.edit');
         Route::put('/coupons/{id}', [AdminCouponsController::class, 'update'])->name('coupons.update');
+       
+        //Reviews CRUD
+        Route::get('/reviews', [AdminReviewsController::class, 'index'])->name('reviews.index');
+        Route::delete('/reviews/{id}', [AdminReviewsController::class, 'destroy'])->name('reviews.destroy');
+        Route::post('/reviews/{id}/{actionType}', [AdminReviewsController::class, 'update'])->name('reviews.update');
 });
 
